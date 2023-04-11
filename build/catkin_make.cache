@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/howard/Documents/Agri-Bot/devel -DCMAKE_INSTALL_PREFIX=/home/howard/Documents/Agri-Bot/install -G Unix Makefiles
