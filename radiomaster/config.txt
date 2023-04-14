@@ -1,0 +1,2 @@
+420000 baud
+binding phrase: agribot
