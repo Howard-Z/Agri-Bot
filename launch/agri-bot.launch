@@ -1,0 +1,6 @@
+<launch>
+  <!-- Launch MQTT client node with custom parameters -->
+  <include file="$(find mqtt_client)/launch/standalone.launch">
+    <arg name="params_file" value="/home/bale-bot/Agri-Bot/config/mqttbridgeparams.yaml"/>
+  </include>
+</launch>

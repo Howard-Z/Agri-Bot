@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-# Function to clean up ROS nodes on exit
+# Function to clean up ROS nodes and terminate roscore
 cleanup() {
-  echo "Cleaning up ROS nodes..."
-  rosnode kill -a
+  echo "Cleaning up ROS nodes and terminating roscore..."
+  rosnode cleanup
+  pkill -f roscore
 }
 
 # Trap SIGINT signal (Ctrl-C) and call cleanup function
@@ -18,5 +19,7 @@ while ! rostopic list > /dev/null 2>&1; do
   sleep 1
 done
 
+echo sourcing files...
+source devel/setup.bash
 # Launch robot launch file
-roslaunch agri-bot agri-bot.launch
+roslaunch agri-bot /home/bale-bot/Agri-bot/launch/agri-bot.launch

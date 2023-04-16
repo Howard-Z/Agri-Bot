@@ -19,9 +19,9 @@ except ImportError:
             break
     from catkin.environment_cache import generate_environment_script
 
-code = generate_environment_script('/home/howard/Documents/Agri-Bot/devel/env.sh')
+code = generate_environment_script('/home/bale-bot/Agri-Bot/devel/env.sh')
 
-output_filename = '/home/howard/Documents/Agri-Bot/build/catkin_generated/setup_cached.sh'
+output_filename = '/home/bale-bot/Agri-Bot/build/catkin_generated/setup_cached.sh'
 with open(output_filename, 'w') as f:
     # print('Generate script for cached setup "%s"' % output_filename)
     f.write('\n'.join(code))

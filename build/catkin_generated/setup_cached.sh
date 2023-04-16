@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/howard/Documents/Agri-Bot/devel:$CMAKE_PREFIX_PATH"
-export PWD='/home/howard/Documents/Agri-Bot/build'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/howard/Documents/Agri-Bot/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/howard/Documents/Agri-Bot/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/bale-bot/Agri-Bot/devel:$CMAKE_PREFIX_PATH"
+export PWD='/home/bale-bot/Agri-Bot/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/bale-bot/Agri-Bot/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/bale-bot/Agri-Bot/src:$ROS_PACKAGE_PATH"
