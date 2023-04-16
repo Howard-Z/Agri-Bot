@@ -22,4 +22,4 @@ done
 echo sourcing files...
 source devel/setup.bash
 # Launch robot launch file
-roslaunch agri-bot /home/bale-bot/Agri-bot/launch/agri-bot.launch
+roslaunch /home/bale-bot/Agri-Bot/launch/agri-bot.launch
