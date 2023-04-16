@@ -36,6 +36,9 @@ void connect() {
 // Also note the atmega only has one Serial, so logging to Serial must be removed
 CrsfSerial crsf(Serial1, CRSF_BAUDRATE);
 
+
+int hist[8];
+
 /***
  * This callback is called whenever new channel values are available.
  * Use crsf.getChannel(x) to get us channel values (1-16).
@@ -45,22 +48,31 @@ void packetChannels()
   for(int i = 1; i <= 8; i++)
   {
 
-    Serial.print("CH");
-    Serial.print(i);
-    Serial.print(":");
+    // Serial.print("CH");
+    // Serial.print(i);
+    // Serial.print(":");
     int data = crsf.getChannel(i);
-    Serial.print(data);
-    Serial.print(" | ");
-    client.publish("RC/CH" + String(i), String(data));
+    // Serial.print(data);
+    // Serial.print(" | ");
+    if(crsf.getChannel(6) == 1500 && data != hist[i - 1])
+    {
+      client.publish("RC/CH" + String(i), String(data));
+    }
+    else if(crsf.getChannel(6) == 989)
+    {
+      client.publish("RC/CH" + String(i), String(data));
+    }
+    hist[i - 1] = data;
   }
-  Serial.println();
+  //Serial.println();
 }
+
 
 void setup()
 {
   WiFi.begin(ssid, pass);
   client.begin("10.42.0.1", net);
-    Serial.begin(115200);
+    //Serial.begin(115200);
 
     // If something other than changing the baud of the UART needs to be done, do it here
     // Serial1.end(); Serial1.begin(500000, SERIAL_8N1, 16, 17);
