@@ -1,4 +1,34 @@
 #include <CrsfSerial.h>
+#include <WiFi.h>
+#include <MQTT.h>
+
+// Initialize Hotspot values
+#define address 0x80
+
+const char ssid[] = "Bale-Bot";
+const char pass[] = "$tructur3s-Computer";
+
+WiFiClient net;
+MQTTClient client;
+
+unsigned long lastMillis = 0;
+
+void connect() {
+  Serial.print("checking wifi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+
+  Serial.print("\nconnecting...");
+  while (!client.connect("")) {
+    Serial.print(".");
+    delay(1000);
+  }
+
+  Serial.println("\nconnected!");
+}
+
 
 // Pass any HardwareSerial port
 // "Arduino" users (atmega328) can not use CRSF_BAUDRATE, as the atmega does not support it
@@ -14,17 +44,22 @@ void packetChannels()
 {
   for(int i = 1; i <= 8; i++)
   {
+
     Serial.print("CH");
     Serial.print(i);
     Serial.print(":");
-    Serial.print(crsf.getChannel(i));
+    int data = crsf.getChannel(i);
+    Serial.print(data);
     Serial.print(" | ");
+    client.publish("RC/CH" + String(i), String(data));
   }
   Serial.println();
 }
 
 void setup()
 {
+  WiFi.begin(ssid, pass);
+  client.begin("10.42.0.1", net);
     Serial.begin(115200);
 
     // If something other than changing the baud of the UART needs to be done, do it here
@@ -36,6 +71,12 @@ void setup()
 
 void loop()
 {
+  client.loop();
+  delay(10);  // <- fixes some issues with WiFi stability
+
+  if (!client.connected()) {
+    connect();
+  }
     // Must call CrsfSerial.loop() in loop() to process data
-    crsf.loop();
+  crsf.loop();
 }
