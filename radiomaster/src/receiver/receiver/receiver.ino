@@ -43,9 +43,35 @@ int hist[8];
  * This callback is called whenever new channel values are available.
  * Use crsf.getChannel(x) to get us channel values (1-16).
  ***/
+// void packetChannels1()
+// {
+//   for(int i = 1; i <= 8; i++)
+//   {
+
+//     // Serial.print("CH");
+//     // Serial.print(i);
+//     // Serial.print(":");
+//     int data = crsf.getChannel(i);
+//     // Serial.print(data);
+//     // Serial.print(" | ");
+//     if(crsf.getChannel(6) == 1500 && data != hist[i - 1])
+//     {
+//       client.publish("RC/CH" + String(i), String(data));
+//     }
+//     else if(crsf.getChannel(6) == 989)
+//     {
+//       client.publish("RC/CH" + String(i), String(data));
+//     }
+//     hist[i - 1] = data;
+//   }
+//   //Serial.println();
+// }
+
 void packetChannels()
 {
-  for(int i = 1; i <= 8; i++)
+  bool publish = false;
+  String msg = "";
+  for(int i = 1; i < 8; i++)
   {
 
     // Serial.print("CH");
@@ -56,21 +82,39 @@ void packetChannels()
     // Serial.print(" | ");
     if(crsf.getChannel(6) == 1500 && data != hist[i - 1])
     {
-      client.publish("RC/CH" + String(i), String(data));
+      publish = true;
     }
     else if(crsf.getChannel(6) == 989)
     {
-      client.publish("RC/CH" + String(i), String(data));
+      publish = true;
     }
+    msg += String(data) + ",";
     hist[i - 1] = data;
   }
-  //Serial.println();
-}
+  int data = crsf.getChannel(8);
+  if(crsf.getChannel(6) == 1500 && data != hist[8 - 1])
+    {
+      publish = true;
+    }
+  else if(crsf.getChannel(6) == 989)
+  {
+    publish = true;
+  }
+  msg += String(data);
+  hist[8 - 1] = data;
 
+  //Serial.println();
+  if(publish)
+  {
+    client.publish("RC/CH", msg);
+  }
+}
 
 void setup()
 {
   WiFi.begin(ssid, pass);
+
+  //POTENTIAL PROBLEMS IF IP CHANGES
   client.begin("10.42.0.1", net);
     //Serial.begin(115200);
 
