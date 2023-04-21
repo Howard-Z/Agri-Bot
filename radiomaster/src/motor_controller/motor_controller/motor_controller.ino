@@ -28,27 +28,57 @@ void connect() {
     delay(1000);
   }
 
-  client.subscribe("Motors/FL");
-  client.subscribe("Motors/FR");
+  client.subscribe("Motors/FL"); //motor 1 is left
+  client.subscribe("Motors/FR"); //motor 2 is right
 
   Serial.println("\nconnected!");
 }
 
 void messageReceived(String &topic, String &payload)
 {
-  Serial.println("incoming: " + topic + " - " + payload);
+  //Serial.println("incoming: " + topic + " - " + payload);
   int speed = payload.toInt();
-  motor_speed(speed);
-  Serial.print("Changing speed to: ");
-  Serial.println(speed);
+  if(topic == "Motors/FL")
+  {
+    motor1_speed(speed);
+    return;
+  }
+  if(topic == "Motors/FR")
+  {
+    motor2_speed(speed);
+    return;
+  }
+  return;
+  //Serial.print("Changing speed to: ");
+  //Serial.println(speed);
 }
 
 
-void motor_speed(int speed) {
+void motor1_speed(int speed) {
+  //Serial.println(speed);
   if (speed > 0)
+  {
+    speed = speed - 1;
     roboclaw.ForwardM1(address,speed);
+  }
   else
-    roboclaw.BackwardM1(address,speed);
+  {
+    roboclaw.BackwardM1(address, -1 * speed);
+  }
+  //delay(2000);
+}
+
+void motor2_speed(int speed) {
+  //Serial.println(speed);
+  if (speed > 0)
+  {
+    speed = speed - 1;
+    roboclaw.ForwardM2(address,speed);
+  }
+  else
+  {
+    roboclaw.BackwardM2(address, -1 * speed);
+  }
   //delay(2000);
 }
 
@@ -58,7 +88,7 @@ void setup()
   WiFi.begin(ssid, pass);
 
   //POTENTIAL PROBLEMS IF IP CHANGES
-  Serial.begin(115200);
+  //Serial.begin(115200);
   client.begin("10.42.0.1", net);
   client.onMessage(messageReceived);
   connect();
