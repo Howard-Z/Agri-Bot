@@ -35,3 +35,15 @@
 /home/bale-bot/Agri-Bot/build/gtest/googletest/CMakeFiles/test.dir
 /home/bale-bot/Agri-Bot/build/gtest/googletest/CMakeFiles/gtest_main.dir
 /home/bale-bot/Agri-Bot/build/gtest/googletest/CMakeFiles/gtest.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/install/strip.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/install/local.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/edit_cache.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/test.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/std_msgs_generate_messages_py.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/std_msgs_generate_messages_nodejs.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/std_msgs_generate_messages_lisp.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/std_msgs_generate_messages_eus.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/install.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/list_install_components.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/rebuild_cache.dir
+/home/bale-bot/Agri-Bot/build/motor_control/CMakeFiles/std_msgs_generate_messages_cpp.dir

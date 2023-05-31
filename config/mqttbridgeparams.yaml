@@ -13,28 +13,7 @@ bridge:
       mqtt_topic: Motors/BR       # MQTT topic on which the corresponding ROS messages are sent to the broker
       primitive: true        # [false] whether to publish as primitive message
       
-  mqtt2ros:            # array specifying which MQTT topics to map to which ROS topics
-    - mqtt_topic: RC/CH1       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH1        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
-    - mqtt_topic: RC/CH2       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH2        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
-    - mqtt_topic: RC/CH3       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH3        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
-    - mqtt_topic: RC/CH4       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH4        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
-    - mqtt_topic: RC/CH5       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH5        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
-    - mqtt_topic: RC/CH6       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH6        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
-    - mqtt_topic: RC/CH7       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH7        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
-    - mqtt_topic: RC/CH8       # MQTT topic on which messages are received from the broker
-      ros_topic: /RC/CH8        # ROS topic on which corresponding MQTT messages are published
-      primitive: true        # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)
+  mqtt2ros:               # array specifying which MQTT topics to map to which ROS topics
+    - mqtt_topic: RC/CH   # MQTT topic on which messages are received from the broker
+      ros_topic: /RC/CH   # ROS topic on which corresponding MQTT messages are published
+      primitive: true     # [false] whether to publish as primitive message (if coming from non-ROS MQTT client)

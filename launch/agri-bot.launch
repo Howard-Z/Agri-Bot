@@ -3,4 +3,8 @@
   <include file="$(find mqtt_client)/launch/standalone.launch">
     <arg name="params_file" value="/home/bale-bot/Agri-Bot/config/mqttbridgeparams.yaml"/>
   </include>
+
+  <node pkg="motor_control" type="motor_control.py" name="motor_controller" />
+
+
 </launch>
