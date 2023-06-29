@@ -12,6 +12,9 @@ bridge:
     - ros_topic: /Motors/BR        # ROS topic whose messages are transformed to MQTT messages
       mqtt_topic: Motors/BR       # MQTT topic on which the corresponding ROS messages are sent to the broker
       primitive: true        # [false] whether to publish as primitive message
+    - ros_topic: /Sprayer
+      mqtt_topic: Sprayer
+      primitive: true
       
   mqtt2ros:               # array specifying which MQTT topics to map to which ROS topics
     - mqtt_topic: RC/CH   # MQTT topic on which messages are received from the broker
