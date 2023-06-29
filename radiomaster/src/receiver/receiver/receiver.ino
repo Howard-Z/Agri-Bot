@@ -37,7 +37,7 @@ void connect() {
 CrsfSerial crsf(Serial1, CRSF_BAUDRATE);
 
 
-int hist[8];
+int hist[16];
 
 /***
  * This callback is called whenever new channel values are available.
@@ -71,7 +71,7 @@ void packetChannels()
 {
   bool publish = false;
   String msg = "";
-  for(int i = 1; i < 8; i++)
+  for(int i = 1; i < 16; i++)
   {
 
     // Serial.print("CH");
@@ -91,8 +91,8 @@ void packetChannels()
     msg += String(data) + ",";
     hist[i - 1] = data;
   }
-  int data = crsf.getChannel(8);
-  if(crsf.getChannel(6) == 1500 && data != hist[8 - 1])
+  int data = crsf.getChannel(16);
+  if(crsf.getChannel(6) == 1500 && data != hist[16 - 1])
     {
       publish = true;
     }
@@ -101,7 +101,7 @@ void packetChannels()
     publish = true;
   }
   msg += String(data);
-  hist[8 - 1] = data;
+  hist[16 - 1] = data;
 
   //Serial.println();
   if(publish)
@@ -116,7 +116,7 @@ void setup()
 
   //POTENTIAL PROBLEMS IF IP CHANGES
   client.begin("10.42.0.1", net);
-    //Serial.begin(115200);
+    //Serial.begin(115200); //COMMENT THIS OUT, THIS MAKES THINGS SLOW
 
     // If something other than changing the baud of the UART needs to be done, do it here
     // Serial1.end(); Serial1.begin(500000, SERIAL_8N1, 16, 17);
