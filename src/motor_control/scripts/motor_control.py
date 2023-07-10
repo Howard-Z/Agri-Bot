@@ -116,9 +116,9 @@ def manual_control():
     ch2 = int(channel(2)) - 1500
     throttle = joystickToDiff(ch1, ch2, -511, 511, -127, 127)
     # print(throttle)
-    FL.publish(int(throttle[0]))
+    FL.publish(int(throttle[1])) #the mismath between the L and Rs is because the motor driver is mirrored on the robot
+    FR.publish(int(throttle[0])) #Note that the FRONT motor driver must be in "reversed" mode (i.e. it just does the opposite of the sent command)
     BL.publish(int(throttle[0]))
-    FR.publish(int(throttle[1]))
     BR.publish(int(throttle[1]))
     # FIX DEBOUNCING ISSUE USING MILLIS()
     # unsigned long lastExecuted = 0;
