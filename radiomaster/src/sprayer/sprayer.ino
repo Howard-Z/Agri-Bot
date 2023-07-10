@@ -95,7 +95,7 @@ void setup()
   WiFi.begin(ssid, pass);
 
   //POTENTIAL PROBLEMS IF IP CHANGES
-  Serial.begin(115200);
+  //Serial.begin(115200);
   client.begin("10.42.0.1", net);
   client.onMessage(messageReceived);
   connect();

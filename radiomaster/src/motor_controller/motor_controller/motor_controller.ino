@@ -36,15 +36,16 @@ void connect() {
 
 void messageReceived(String &topic, String &payload)
 {
-  //Serial.println("incoming: " + topic + " - " + payload);
   int speed = payload.toInt();
   if(topic == "Motors/FL")
   {
+    Serial.println("incoming: " + topic + " - " + payload);
     motor1_speed(speed);
     return;
   }
   if(topic == "Motors/FR")
   {
+    Serial.println("incoming: " + topic + " - " + payload);
     motor2_speed(speed);
     return;
   }
